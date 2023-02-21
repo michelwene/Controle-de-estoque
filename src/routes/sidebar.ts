@@ -8,7 +8,7 @@ export const sidebar = [
 	},
 	{
 		title: "Produtos",
-		path: "/products",
+		path: "/produtos",
 		icon: FaUsers,
 	},
 ];

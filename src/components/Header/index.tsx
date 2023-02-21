@@ -1,4 +1,5 @@
 import Counter from "components/Counter";
+import Sidebar from "components/Sidebar";
 import Title from "components/Title";
 import React from "react";
 import * as S from "./styles";
@@ -8,7 +9,10 @@ export default class Header extends React.Component {
 		return (
 			<S.Container>
 				<S.Content>
-					<Title title="Controle de estoque" />
+					<S.WrapperMenu>
+						<Sidebar />
+						<Title title="Controle de estoque" />
+					</S.WrapperMenu>
 					<Counter />
 				</S.Content>
 			</S.Container>

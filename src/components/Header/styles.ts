@@ -16,3 +16,10 @@ export const Content = styled.div`
 	align-items: center;
 	justify-content: space-between;
 `;
+
+export const WrapperMenu = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 1rem;
+`;

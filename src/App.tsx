@@ -1,3 +1,4 @@
+import Sidebar from "components/Sidebar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RoutesComponent from "routes";
 import { ThemeProvider } from "styled-components";
