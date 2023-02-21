@@ -14,3 +14,20 @@ export const Backdrop = styled.div<ModalProps>`
 	width: 100vw;
 	background: rgba(0, 0, 0, 0.5);
 `;
+
+export const Container = styled.div<ModalProps>`
+	position: fixed;
+	background: antiquewhite;
+	width: 33%;
+	height: auto;
+
+	top: 50%;
+
+	left: 50%;
+
+	transform: "translate(-50%,-50%)";
+
+	border-radius: 10px;
+	padding: 0.75rem;
+	color: rgba(0, 0, 139, 0.7);
+`;
