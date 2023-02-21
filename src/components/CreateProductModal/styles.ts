@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RiCloseLine } from "react-icons/ri";
 
 interface ModalProps {
 	isShow: boolean;
@@ -6,28 +7,69 @@ interface ModalProps {
 
 export const Backdrop = styled.div<ModalProps>`
 	z-index: auto;
-	display: ${({ isShow }) => (isShow ? "block" : "none")};
+	display: ${({ isShow }) => (isShow ? "flex" : "none")};
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100vh;
+	min-height: 100vh;
 	width: 100vw;
 	background: rgba(0, 0, 0, 0.5);
+
+	justify-content: center;
+	align-items: center;
 `;
 
-export const Container = styled.div<ModalProps>`
-	position: fixed;
-	background: antiquewhite;
+export const Container = styled.div`
+	background: ${({ theme }) => theme.background.primary};
 	width: 33%;
 	height: auto;
+	max-height: 80vh;
+	overflow-y: auto;
 
-	top: 50%;
-
-	left: 50%;
+	transition: transform 0.5s ease-in-out;
 
 	transform: "translate(-50%,-50%)";
 
 	border-radius: 10px;
 	padding: 0.75rem;
-	color: rgba(0, 0, 139, 0.7);
+`;
+
+export const ModalHeader = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
+
+export const ModalTitle = styled.h3`
+	font-size: ${({ theme }) => theme.fontSizes.xl};
+	font-weight: 600;
+	font-family: ${({ theme }) => theme.fonts.primary};
+`;
+
+export const CloseButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	padding: 0.5rem;
+
+	transition: filter 0.2s;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		filter: brightness(0.8);
+		background-color: rgba(0, 0, 0, 0.1);
+		border-radius: 50%;
+	}
+
+	&:active {
+		filter: brightness(0.6);
+	}
+`;
+
+export const CloseIcon = styled(RiCloseLine)`
+	font-size: ${({ theme }) => theme.fontSizes.md};
 `;
