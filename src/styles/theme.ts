@@ -5,6 +5,10 @@ const theme = {
 		blue: "#007ce0",
 		navy: "#004175",
 	},
+	background: {
+		primary: "#f3f3f3",
+		shape: "#fff",
+	},
 	fonts: {
 		primary: "Roboto, sans-serif",
 	},
