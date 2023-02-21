@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div``;
 
 export const Title = styled.button`
-	font-size: ${({ theme }) => theme.fontSizes.md};
+	font-size: ${({ theme }) => theme.fontSizes.sm};
 	color: ${({ theme }) => theme.colors.white};
-	font-weight: 600;
+	font-weight: 500;
 
 	font-family: ${({ theme }) => theme.fonts.primary};
 

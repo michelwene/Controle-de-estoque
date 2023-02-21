@@ -7,7 +7,7 @@ export const Container = styled.header`
 
 	border: none;
 
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 00px 20px rgba(0, 0, 0, 0.4);
 `;
 
 export const Content = styled.div`

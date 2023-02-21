@@ -1,21 +1,19 @@
-import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import * as S from "./styles";
 import { sidebar } from "routes/sidebar";
-import { useState } from "react";
+import { useSidebarContext } from "context/SidebarProvider";
 
 export default function Sidebar() {
-	const [close, setClose] = useState(false);
-	const showSidebar = () => setClose(!close);
+	const { isSidebarOpen, closeSidebar, toggleSidebar } = useSidebarContext();
 	return (
 		<>
 			<S.Navbar>
-				<S.MenuIconOpen to="#" onClick={showSidebar}>
+				<S.MenuIconOpen to="#" onClick={toggleSidebar}>
 					<FaBars />
 				</S.MenuIconOpen>
 			</S.Navbar>
-			<S.SidebarMenu close={close}>
-				<S.MenuIconClose to="#" onClick={showSidebar}>
+			<S.SidebarMenu close={isSidebarOpen}>
+				<S.MenuIconClose to="#" onClick={closeSidebar}>
 					<FaTimes />
 				</S.MenuIconClose>
 
