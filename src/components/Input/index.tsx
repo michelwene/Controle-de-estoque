@@ -9,7 +9,8 @@ interface InputProps {
 	isMoney?: boolean;
 }
 import { Controller, useFormContext } from "react-hook-form";
-import { maskMoney, unMaskMoney } from "utils/maskOutputs";
+import { maskMoney } from "utils/maskOutputs";
+import FormHelperError from "components/FormHelperError";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 	{ name, id, label, isRequired, isMoney, ...rest },
@@ -25,29 +26,35 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 				required: isRequired ? "Campo obrigatório" : false,
 			}}
 			render={(inputProps) => (
-				<S.Container>
-					<S.Input
-						ref={ref}
-						name={name}
-						{...rest}
-						type="text"
-						id={id}
-						onChange={(e) => {
-							inputProps.field.onChange(e.target.value);
-						}}
-						value={
-							isMoney
-								? maskMoney(inputProps.field.value ?? "")
-								: inputProps.field.value
-						}
-					/>
-					<S.Label
-						htmlFor={id}
-						isActive={!!inputProps.field.value || (isMoney && true)}
-					>
-						{label}
-					</S.Label>
-				</S.Container>
+				<>
+					<S.Container>
+						<S.Input
+							ref={ref}
+							name={name}
+							{...rest}
+							type="text"
+							id={id}
+							onChange={(e) => {
+								inputProps.field.onChange(e.target.value);
+							}}
+							value={
+								isMoney
+									? maskMoney(inputProps.field.value ?? "")
+									: inputProps.field.value
+							}
+							isError={inputProps.fieldState.error && true}
+						/>
+						<S.Label
+							htmlFor={id}
+							isActive={!!inputProps.field.value || (isMoney && true)}
+						>
+							{label}
+						</S.Label>
+					</S.Container>
+					{inputProps.fieldState.error && (
+						<FormHelperError text={inputProps.fieldState.error.message + ""} />
+					)}
+				</>
 			)}
 		/>
 	);

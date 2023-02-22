@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoAdd } from "react-icons/io5";
 
 interface IProps {
 	isPrevious?: boolean;
@@ -37,4 +38,39 @@ export const Button = styled.button<IProps>`
 	&:active {
 		filter: brightness(0.8);
 	}
+`;
+
+export const CategoryWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 1rem;
+
+	margin-top: 1rem;
+`;
+
+export const ButtonCreateCategory = styled.button`
+	background-color: #4a90e2;
+
+	border: none;
+	border-radius: 4px;
+	padding: 0.3rem 0.8rem;
+	outline: none;
+
+	cursor: pointer;
+
+	transition: filter 0.2s;
+
+	&:hover {
+		filter: brightness(0.9);
+	}
+
+	&:active {
+		filter: brightness(0.8);
+	}
+`;
+
+export const Icon = styled(IoAdd)`
+	font-size: 1.5rem;
+	color: ${({ theme }) => theme.colors.white};
 `;

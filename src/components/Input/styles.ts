@@ -18,7 +18,7 @@ export const Container = styled.div`
 	}
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<IProps>`
 	width: 100%;
 	height: 56px;
 	outline: none;
@@ -29,7 +29,7 @@ export const Input = styled.input`
 	padding: 12px 16px 0px 12px;
 
 	background-color: ${({ theme }) => theme.background.shape};
-	border: 1px solid #ddd;
+	border: 1px solid ${({ isError }) => (isError ? "#f00" : "#ccc")};
 	border-radius: 4px;
 	font-size: 1rem;
 	font-family: ${({ theme }) => theme.fonts.primary};

@@ -8,6 +8,7 @@ const theme = {
 	background: {
 		primary: "#f3f3f3",
 		shape: "#fff",
+		bgButton: "#4a90e2",
 	},
 	fonts: {
 		primary: "Roboto, sans-serif",

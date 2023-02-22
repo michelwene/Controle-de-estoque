@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SelectWrapper = styled.div`
-	margin-top: 1rem;
+	flex: 1;
 `;
 
 export const Select = styled.select`
