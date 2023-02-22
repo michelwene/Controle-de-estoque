@@ -1,9 +1,20 @@
 import Input from "components/Input";
+import * as S from "./styles";
 
-export default function StepBasicInformation() {
+interface StepBasicInformationProps {
+	goToNextStep: () => void;
+}
+
+export default function StepBasicInformation({
+	goToNextStep,
+}: StepBasicInformationProps) {
 	return (
-		<>
-			<Input name="name" id="name" label="Nome" />
-		</>
+		<S.Container>
+			<Input name="name" id="name" label="Nome*" />
+			<Input name="description" id="description" label="Descrição" />
+			<S.Wrapper>
+				<S.ButtonNext onClick={goToNextStep}>Próximo</S.ButtonNext>
+			</S.Wrapper>
+		</S.Container>
 	);
 }

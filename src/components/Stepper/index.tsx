@@ -40,7 +40,10 @@ export default function Stepper({
 									<S.Subtitle>{step.description}</S.Subtitle>
 								</S.StepperHeader>
 								{currentStep === index + 1 && (
-									<S.StepperContent active={index + 1 === currentStep}>
+									<S.StepperContent
+										active={index + 1 === currentStep}
+										id="teste"
+									>
 										<step.component
 											goToNextStep={goToNextStep}
 											goToPreviousStep={goToPreviousStep}

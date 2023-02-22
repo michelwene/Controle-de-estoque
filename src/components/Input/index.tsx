@@ -4,34 +4,42 @@ interface InputProps {
 	name: string;
 	id: string;
 	label: string;
+	isRequired?: boolean;
 }
+import { Controller, useFormContext } from "react-hook-form";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-	{ name, id, label, ...rest },
+	{ name, id, label, isRequired, ...rest },
 	ref
 ) => {
-	const [isActive, setIsActive] = useState(false);
-	const [value, setValue] = useState("");
+	const { control } = useFormContext();
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.target.value);
-		setIsActive(!!e.target.value);
-	};
 	return (
-		<S.Container>
-			<S.Input
-				ref={ref}
-				name={name}
-				{...rest}
-				type="text"
-				id={id}
-				onChange={handleChange}
-				value={value}
-			/>
-			<S.Label htmlFor={id} isActive={isActive}>
-				{label}
-			</S.Label>
-		</S.Container>
+		<Controller
+			control={control}
+			name={name}
+			rules={{
+				required: isRequired ? "Campo obrigatório" : false,
+			}}
+			render={(inputProps) => (
+				<S.Container>
+					<S.Input
+						ref={ref}
+						name={name}
+						{...rest}
+						type="text"
+						id={id}
+						onChange={(e) => {
+							inputProps.field.onChange(e);
+						}}
+						value={inputProps.field.value}
+					/>
+					<S.Label htmlFor={id} isActive={!!inputProps.field.value}>
+						{label}
+					</S.Label>
+				</S.Container>
+			)}
+		/>
 	);
 };
 
