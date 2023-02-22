@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { forwardRef, ForwardRefRenderFunction, useState } from "react";
 import * as S from "./styles";
 interface InputProps {
@@ -5,11 +6,13 @@ interface InputProps {
 	id: string;
 	label: string;
 	isRequired?: boolean;
+	isMoney?: boolean;
 }
 import { Controller, useFormContext } from "react-hook-form";
+import { maskMoney, unMaskMoney } from "utils/maskOutputs";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-	{ name, id, label, isRequired, ...rest },
+	{ name, id, label, isRequired, isMoney, ...rest },
 	ref
 ) => {
 	const { control } = useFormContext();
@@ -30,11 +33,18 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 						type="text"
 						id={id}
 						onChange={(e) => {
-							inputProps.field.onChange(e);
+							inputProps.field.onChange(e.target.value);
 						}}
-						value={inputProps.field.value}
+						value={
+							isMoney
+								? maskMoney(inputProps.field.value ?? "")
+								: inputProps.field.value
+						}
 					/>
-					<S.Label htmlFor={id} isActive={!!inputProps.field.value}>
+					<S.Label
+						htmlFor={id}
+						isActive={!!inputProps.field.value || (isMoney && true)}
+					>
 						{label}
 					</S.Label>
 				</S.Container>
