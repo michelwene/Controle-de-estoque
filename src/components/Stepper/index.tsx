@@ -13,7 +13,6 @@ interface StepperProps {
 	goToNextStep: () => void;
 	goToPreviousStep: () => void;
 	currentStep: number;
-	setStep: (step: number) => void;
 	handleSubmit?: () => void;
 }
 
@@ -27,20 +26,29 @@ export default function Stepper({
 		<S.StepperContainer>
 			{steps.map((step, index) => {
 				return (
-					<S.StepperWrapper key={step.id}>
-						<S.WrapperDot active={index === currentStep}>
-							<S.StepperDot>{index + 1}</S.StepperDot>
+					<S.StepperWrapper key={step.id} active={index + 1 === currentStep}>
+						<S.WrapperDot>
+							<S.StepperDot active={index + 1 === currentStep}>
+								<S.StepperNumber>{index + 1}</S.StepperNumber>
+							</S.StepperDot>
+							<S.StepperLine lastIndex={steps.length === index + 1} />
 						</S.WrapperDot>
-						<S.StepperHeader>
-							<S.Title>{step.title}</S.Title>
-							<S.Subtitle>{step.description}</S.Subtitle>
-						</S.StepperHeader>
-						<S.StepperContent active={index === currentStep}>
-							<step.component
-								goToNextStep={goToNextStep}
-								goToPreviousStep={goToPreviousStep}
-							/>
-						</S.StepperContent>
+						<S.StepperBody>
+							<S.WrapperStepperBody>
+								<S.StepperHeader>
+									<S.Title>{step.title}</S.Title>
+									<S.Subtitle>{step.description}</S.Subtitle>
+								</S.StepperHeader>
+								{currentStep === index + 1 && (
+									<S.StepperContent active={index + 1 === currentStep}>
+										<step.component
+											goToNextStep={goToNextStep}
+											goToPreviousStep={goToPreviousStep}
+										/>
+									</S.StepperContent>
+								)}
+							</S.WrapperStepperBody>
+						</S.StepperBody>
 					</S.StepperWrapper>
 				);
 			})}

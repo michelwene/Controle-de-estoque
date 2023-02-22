@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.header`
 	background: ${({ theme }) => theme.colors.blue};
 
-	padding: 1rem 2rem;
+	padding: 0.5rem 2rem;
 
 	border: none;
 

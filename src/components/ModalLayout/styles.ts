@@ -24,7 +24,6 @@ export const Container = styled.div`
 	width: 33%;
 	height: auto;
 	max-height: 80vh;
-	overflow-y: auto;
 
 	transition: transform 0.5s ease-in-out;
 
@@ -41,7 +40,7 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalTitle = styled.h3`
-	font-size: ${({ theme }) => theme.fontSizes.xl};
+	font-size: ${({ theme }) => theme.fontSizes.xs};
 	font-weight: 600;
 	font-family: ${({ theme }) => theme.fonts.primary};
 `;

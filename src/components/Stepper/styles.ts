@@ -1,59 +1,81 @@
 import styled from "styled-components";
 
 interface IProps {
-	active: boolean;
+	active?: boolean;
+	lastIndex?: boolean;
 }
 
-export const StepperContainer = styled.div``;
+export const StepperContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
 
-export const WrapperDot = styled.div<IProps>`
-	width: 28;
-	height: 28;
-	border-radius: 13;
+	margin-top: 1rem;
+	padding-bottom: 1rem;
+`;
+
+export const WrapperDot = styled.div``;
+
+export const StepperDot = styled.div<IProps>`
 	display: flex;
 	align-items: center;
-	align-content: center;
-	background-color: "#4A90E2";
-	margin-left: -14;
+	justify-content: center;
 
-	background-color: ${({ active }) => (active ? "#4A90E2" : "#9B9B9B")};
+	background-color: ${({ active }) => (active ? "#4a90e2;" : "#999")};
+	border-radius: 50%;
+
+	width: 30px;
+	height: 30px;
 `;
 
-export const StepperDot = styled.div`
-	color: "#FFF";
-	margin: 5px;
+export const StepperNumber = styled.span`
+	color: #fff;
+	font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
-export const StepperWrapper = styled.div`
-	border-left-color: "#999";
-	border-left-width: 1;
-	margin-left: 16;
-	padding-bottom: 12;
-	flex: 1;
-	padding: 24px 0;
+export const StepperLine = styled.div<IProps>`
+	height: 100%;
+	width: 1px;
+	margin: 0 auto;
+
+	border: ${({ lastIndex }) => (lastIndex ? "none" : "1px solid #999")};
 `;
 
-export const StepperHeader = styled.div`
-	margin-top: -30;
-	margin-left: 24;
-	margin-bottom: 24;
+export const StepperWrapper = styled.div<IProps>`
+	display: flex;
 `;
+
+export const StepperHeader = styled.div``;
 
 export const Title = styled.h3`
-	font-size: 15;
-	font-weight: "400";
+	font-size: 15px;
+	font-weight: 600;
+
+	font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
 export const Subtitle = styled.p`
-	font-size: 13;
+	font-size: 13px;
 	font-weight: 300;
 	font-family: ${({ theme }) => theme.fonts.primary};
+`;
+
+export const StepperBody = styled.div`
+	flex: 1;
+`;
+
+export const WrapperStepperBody = styled.div`
+	margin-left: 1rem;
 `;
 
 export const StepperContent = styled.div<IProps>`
 	margin-left: 24px;
 	margin-bottom: 24px;
-	margin-top: -12px;
-	flex: 1;
+	margin-top: 12px;
+
+	row-gap: 1rem;
+
+	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 `;
