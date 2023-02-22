@@ -1,5 +1,5 @@
 import ButtonFab from "components/ButtonFab";
-import CreateProductModal from "components/CreateProductModal";
+import CreateProductModal from "pages/Products/CreateProductModal";
 import useToggle from "hooks/useToggle";
 
 export default function Products() {
