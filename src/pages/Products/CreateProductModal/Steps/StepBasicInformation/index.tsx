@@ -1,7 +1,9 @@
+import Input from "components/Input";
+
 export default function StepBasicInformation() {
 	return (
 		<>
-			<h1>Step 1</h1>
+			<Input name="name" id="name" label="Nome" />
 		</>
 	);
 }

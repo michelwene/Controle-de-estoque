@@ -12,6 +12,9 @@ export const StepperContainer = styled.div`
 
 	margin-top: 1rem;
 	padding-bottom: 1rem;
+	flex: 1;
+
+	height: auto;
 `;
 
 export const WrapperDot = styled.div``;
@@ -69,7 +72,6 @@ export const WrapperStepperBody = styled.div`
 `;
 
 export const StepperContent = styled.div<IProps>`
-	margin-left: 24px;
 	margin-bottom: 24px;
 	margin-top: 12px;
 
@@ -78,4 +80,7 @@ export const StepperContent = styled.div<IProps>`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	height: auto;
+	min-height: 200px;
 `;

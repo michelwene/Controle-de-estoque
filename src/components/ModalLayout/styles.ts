@@ -21,9 +21,9 @@ export const Backdrop = styled.div<ModalProps>`
 
 export const Container = styled.div`
 	background: ${({ theme }) => theme.background.primary};
-	width: 33%;
+	min-width: 33%;
 	height: auto;
-	max-height: 80vh;
+	max-height: 50vh;
 
 	transition: transform 0.5s ease-in-out;
 
