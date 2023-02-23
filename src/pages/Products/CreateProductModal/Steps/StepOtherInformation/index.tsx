@@ -1,26 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Input from "components/Input";
 import ModalCreateCategory from "components/ModalCreateCategory";
 import Select from "components/Select";
 import useToggle from "hooks/useToggle";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCategories } from "redux/categoriesSlice";
 import * as S from "./styles";
 
 interface StepOtherInformationProps {
 	goToPreviousStep: () => void;
 }
 
-type Category = {
-	id: string;
-	name: string;
-};
-
 export default function StepOtherInformation({
 	goToPreviousStep,
 }: StepOtherInformationProps) {
+	const categories = useSelector(selectCategories);
 	const [value, toggle] = useToggle();
-	const [categories, setCategories] = useState<Category[]>([
-		{ id: "1", name: "Categoria 1" },
-	]);
+
+	console.log(categories);
 	return (
 		<>
 			<S.Container>

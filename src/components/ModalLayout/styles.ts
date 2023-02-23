@@ -31,6 +31,8 @@ export const Container = styled.div`
 
 	border-radius: 10px;
 	padding: 0.75rem;
+
+	overflow-y: auto;
 `;
 
 export const ModalHeader = styled.div`
