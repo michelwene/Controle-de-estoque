@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addCategories } from "redux/categoriesSlice";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
+import LoadingButton from "components/LoadingButton";
 
 interface ModalCreateCategoryProps {
 	isShow: boolean;
@@ -40,8 +41,8 @@ export default function ModalCreateCategory({
 		setTimeout(() => {
 			dispatch(addCategories(formData));
 			setIsLoading(false);
+			handleClose();
 		}, 3000);
-		handleClose();
 	};
 
 	return (
@@ -53,9 +54,11 @@ export default function ModalCreateCategory({
 			>
 				<S.Container>
 					<Input name="category" label="Categoria" id="category" isRequired />
-					<S.Wrapper>
-						<S.Button onClick={handleSubmit(onSubmit)}>Criar</S.Button>
-					</S.Wrapper>
+					<LoadingButton
+						onClick={handleSubmit(onSubmit)}
+						isLoading={isLoading}
+						text="Criar"
+					/>
 				</S.Container>
 			</ModalLayout>
 		</FormProvider>
