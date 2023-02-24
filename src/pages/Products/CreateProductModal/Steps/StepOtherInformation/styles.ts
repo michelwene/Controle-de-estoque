@@ -3,6 +3,7 @@ import { IoAdd } from "react-icons/io5";
 
 interface IProps {
 	isPrevious?: boolean;
+	disabled?: boolean;
 }
 
 export const Container = styled.div``;
@@ -28,6 +29,9 @@ export const Button = styled.button<IProps>`
 
 	outline: none;
 	cursor: pointer;
+
+	pointer-events: ${({ disabled }) => (disabled ? "none" : "initial")};
+	opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
 	transition: filter 0.2s;
 

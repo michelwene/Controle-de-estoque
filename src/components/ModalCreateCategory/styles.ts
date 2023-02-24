@@ -33,3 +33,7 @@ export const Button = styled.button`
 		filter: brightness(0.6);
 	}
 `;
+
+export const WrapperLoading = styled.div`
+	margin-top: 1rem;
+`;

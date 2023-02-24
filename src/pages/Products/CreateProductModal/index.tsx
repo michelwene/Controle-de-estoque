@@ -4,6 +4,8 @@ import useStep from "hooks/useStep";
 import { FormProvider, useForm } from "react-hook-form";
 import StepBasicInformation from "./Steps/StepBasicInformation";
 import StepOtherInformation from "./Steps/StepOtherInformation";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface CreateProductModalProps {
 	isShow: boolean;
@@ -25,11 +27,36 @@ const steps = [
 	},
 ];
 
+const schema = yup.object().shape({
+	name: yup.string().required("Nome é obrigatório"),
+	description: yup.string(),
+	price: yup.string(),
+	stock: yup.string(),
+	category: yup.string(),
+});
+
+export type FormData = {
+	name?: string;
+	description?: string;
+	price?: string;
+	stock?: string;
+	category?: string;
+};
+
 export default function CreateProductModal({
 	isShow,
 	handleClose,
 }: CreateProductModalProps) {
-	const methods = useForm();
+	const methods = useForm({
+		resolver: yupResolver(schema),
+		defaultValues: {
+			name: "",
+			description: "",
+			price: "",
+			stock: "",
+			category: "",
+		},
+	});
 
 	const [currentStep, { goToNextStep, goToPrevStep }] = useStep(steps.length);
 	return (

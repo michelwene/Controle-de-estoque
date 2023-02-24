@@ -23,9 +23,9 @@ export function SidebarProvider({ children }: SidebarContextProps) {
 			toggleSidebar,
 			closeSidebar,
 		}),
-
 		[isSidebarOpen]
 	);
+
 	return (
 		<SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>
 	);

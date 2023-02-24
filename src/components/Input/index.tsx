@@ -1,19 +1,25 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { forwardRef, ForwardRefRenderFunction, useState } from "react";
+import {
+	forwardRef,
+	ForwardRefRenderFunction,
+	HTMLInputTypeAttribute,
+} from "react";
 import * as S from "./styles";
+
 interface InputProps {
 	name: string;
 	id: string;
 	label: string;
 	isRequired?: boolean;
 	isMoney?: boolean;
+	type?: HTMLInputTypeAttribute;
 }
 import { Controller, useFormContext } from "react-hook-form";
 import { maskMoney } from "utils/maskOutputs";
 import FormHelperError from "components/FormHelperError";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-	{ name, id, label, isRequired, isMoney, ...rest },
+	{ name, id, label, isRequired, isMoney, type = "text", ...rest },
 	ref
 ) => {
 	const { control } = useFormContext();
@@ -22,6 +28,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 		<Controller
 			control={control}
 			name={name}
+			defaultValue=""
 			rules={{
 				required: isRequired ? "Campo obrigatório" : false,
 			}}
@@ -32,11 +39,20 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 							ref={ref}
 							name={name}
 							{...rest}
-							type="text"
+							type={type}
 							id={id}
 							onChange={(e) => {
-								inputProps.field.onChange(e.target.value);
+								if (type === "number") {
+									const onlyNumbersWithoutTrace = e.target.value.replace(
+										/[^0-9]/g,
+										""
+									);
+									inputProps.field.onChange(onlyNumbersWithoutTrace);
+								} else {
+									inputProps.field.onChange(maskMoney(e.target.value));
+								}
 							}}
+							min={type === "number" ? 0 : undefined}
 							value={
 								isMoney
 									? maskMoney(inputProps.field.value ?? "")

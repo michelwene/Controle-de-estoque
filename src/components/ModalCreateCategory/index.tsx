@@ -54,11 +54,13 @@ export default function ModalCreateCategory({
 			>
 				<S.Container>
 					<Input name="category" label="Categoria" id="category" isRequired />
-					<LoadingButton
-						onClick={handleSubmit(onSubmit)}
-						isLoading={isLoading}
-						text="Criar"
-					/>
+					<S.WrapperLoading>
+						<LoadingButton
+							onClick={handleSubmit(onSubmit)}
+							isLoading={isLoading}
+							text="Criar"
+						/>
+					</S.WrapperLoading>
 				</S.Container>
 			</ModalLayout>
 		</FormProvider>

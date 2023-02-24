@@ -11,8 +11,6 @@ export const Wrapper = styled.div`
 	align-items: center;
 
 	column-gap: 1rem;
-
-	margin-top: 1rem;
 `;
 
 export const Button = styled.button<IButtonProps>`
