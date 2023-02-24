@@ -1,14 +1,6 @@
 import * as S from "./styles";
 import { Controller, useFormContext } from "react-hook-form";
-
-interface SelectProps {
-	options: Array<{
-		id: string;
-		name: string;
-	}>;
-	name: string;
-	label: string;
-}
+import { SelectProps } from "./types";
 
 export default function Select({ name, options, label }: SelectProps) {
 	const { control } = useFormContext();

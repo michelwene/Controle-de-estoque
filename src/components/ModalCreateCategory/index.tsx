@@ -7,11 +7,7 @@ import { addCategories } from "redux/categoriesSlice";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import LoadingButton from "components/LoadingButton";
-
-interface ModalCreateCategoryProps {
-	isShow: boolean;
-	handleClose: () => void;
-}
+import { ModalCreateCategoryProps } from "./types";
 
 export default function ModalCreateCategory({
 	isShow,

@@ -1,9 +1,6 @@
 import { forwardRef, ForwardRefRenderFunction } from "react";
 import * as S from "./styles";
-
-interface ButtonFabProps {
-	onClick?: () => void;
-}
+import { ButtonFabProps } from "./types";
 
 const ButtonFab: ForwardRefRenderFunction<HTMLButtonElement, ButtonFabProps> = (
 	{ onClick, ...rest },

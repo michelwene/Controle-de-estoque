@@ -1,13 +1,8 @@
 import { createContext, useContext, useMemo, useState } from "react";
-export type SidebarProviderType = {
-	isSidebarOpen: boolean;
-	toggleSidebar: () => void;
-	closeSidebar: () => void;
-};
-
-export interface SidebarContextProps {
-	children: React.ReactNode;
-}
+import {
+	SidebarContextProps,
+	SidebarProviderType,
+} from "types/SidebarProvider";
 
 const SidebarContext = createContext({} as SidebarProviderType);
 

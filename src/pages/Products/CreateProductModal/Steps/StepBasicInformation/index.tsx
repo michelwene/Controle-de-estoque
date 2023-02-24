@@ -1,10 +1,7 @@
 import Input from "components/Input";
 import * as S from "./styles";
 import { useFormContext } from "react-hook-form";
-
-interface StepBasicInformationProps {
-	goToNextStep: () => void;
-}
+import { StepBasicInformationProps } from "./types";
 
 export default function StepBasicInformation({
 	goToNextStep,

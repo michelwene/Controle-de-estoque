@@ -1,29 +1,13 @@
 import { createContext, useContext, useMemo, useState } from "react";
-
-type Product = {
-	id: string;
-	name: string;
-	description?: string;
-	price?: number;
-	stock?: number;
-	category?: string;
-	created_at: Date;
-};
-
-export type ProductsProviderType = {
-	products: Product[];
-	addProduct: (product: Product) => void;
-	removeProduct: (id: string) => void;
-	updateProduct: (product: Product) => void;
-};
-
-export interface SidebarContextProps {
-	children: React.ReactNode;
-}
+import {
+	Product,
+	ProductsContextProps,
+	ProductsProviderType,
+} from "types/ProductsProvider";
 
 const ProductsContext = createContext({} as ProductsProviderType);
 
-export function ProductsProvider({ children }: SidebarContextProps) {
+export function ProductsProvider({ children }: ProductsContextProps) {
 	const [products, setProducts] = useState<Product[]>([]);
 
 	function addProduct(product: Product) {

@@ -1,13 +1,13 @@
+import React from "react";
 import * as S from "./styles";
+import { FormHelperErrorProps } from "./types";
 
-interface FormHelperErrorProps {
-	text: string;
-}
-
-export default function FormHelperError({ text }: FormHelperErrorProps) {
-	return (
-		<S.Container>
-			<S.Text>{text}</S.Text>
-		</S.Container>
-	);
+export default class FormHelperError extends React.Component<FormHelperErrorProps> {
+	render() {
+		return (
+			<S.Container>
+				<S.Text>{this.props.text}</S.Text>
+			</S.Container>
+		);
+	}
 }

@@ -1,9 +1,6 @@
 import * as S from "./styles";
 import { useNavigate } from "react-router-dom";
-
-type Props = {
-	title: string;
-};
+import { Props } from "./types";
 
 export default function Title({ title }: Props) {
 	const navigate = useNavigate();

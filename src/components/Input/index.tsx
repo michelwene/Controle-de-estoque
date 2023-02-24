@@ -1,22 +1,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import {
-	forwardRef,
-	ForwardRefRenderFunction,
-	HTMLInputTypeAttribute,
-} from "react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 import * as S from "./styles";
 
-interface InputProps {
-	name: string;
-	id: string;
-	label: string;
-	isRequired?: boolean;
-	isMoney?: boolean;
-	type?: HTMLInputTypeAttribute;
-}
 import { Controller, useFormContext } from "react-hook-form";
 import { maskMoney } from "utils/maskOutputs";
 import FormHelperError from "components/FormHelperError";
+import { InputProps } from "./types";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 	{ name, id, label, isRequired, isMoney, type = "text", ...rest },

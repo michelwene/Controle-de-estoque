@@ -1,10 +1,5 @@
 import * as S from "./styles";
-
-interface LoadingButtonProps {
-	onClick: () => void;
-	isLoading?: boolean;
-	text: string;
-}
+import { LoadingButtonProps } from "./types";
 
 export default function LoadingButton({
 	onClick,

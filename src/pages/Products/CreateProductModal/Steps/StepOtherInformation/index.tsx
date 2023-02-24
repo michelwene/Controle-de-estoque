@@ -12,11 +12,7 @@ import { useState } from "react";
 import LoadingButton from "components/LoadingButton";
 import { useProductsContext } from "context/ProductsProvider";
 import { v4 as uuid } from "uuid";
-
-interface StepOtherInformationProps {
-	goToPreviousStep: () => void;
-	handleClose: () => void;
-}
+import { StepOtherInformationProps } from "./types";
 
 export default function StepOtherInformation({
 	goToPreviousStep,

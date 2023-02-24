@@ -1,11 +1,5 @@
 import * as S from "./styles";
-
-interface ModalLayoutProps {
-	isShow: boolean;
-	handleClose: () => void;
-	children: React.ReactNode;
-	title: string;
-}
+import { ModalLayoutProps } from "./types";
 
 export default function ModalLayout({
 	isShow,
