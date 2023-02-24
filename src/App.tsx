@@ -1,3 +1,4 @@
+import { ProductsProvider } from "context/ProductsProvider";
 import { SidebarProvider } from "context/SidebarProvider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RoutesComponent from "routes";
@@ -8,14 +9,16 @@ import theme from "styles/theme";
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
-			<SidebarProvider>
-				<BrowserRouter>
-					<Routes>
-						<Route path="/*" element={<RoutesComponent />} />
-					</Routes>
-				</BrowserRouter>
-				<GlobalStyle />
-			</SidebarProvider>
+			<ProductsProvider>
+				<SidebarProvider>
+					<BrowserRouter>
+						<Routes>
+							<Route path="/*" element={<RoutesComponent />} />
+						</Routes>
+					</BrowserRouter>
+					<GlobalStyle />
+				</SidebarProvider>
+			</ProductsProvider>
 		</ThemeProvider>
 	);
 }

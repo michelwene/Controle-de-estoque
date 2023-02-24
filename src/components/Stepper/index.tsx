@@ -8,10 +8,12 @@ interface StepperProps {
 		component: React.FC<{
 			goToNextStep: () => void;
 			goToPreviousStep: () => void;
+			handleClose: () => void;
 		}>;
 	}>;
 	goToNextStep: () => void;
 	goToPreviousStep: () => void;
+	handleClose: () => void;
 	currentStep: number;
 	handleSubmit?: () => void;
 }
@@ -20,6 +22,7 @@ export default function Stepper({
 	currentStep,
 	goToNextStep,
 	goToPreviousStep,
+	handleClose,
 	steps,
 }: StepperProps) {
 	return (
@@ -47,6 +50,7 @@ export default function Stepper({
 										<step.component
 											goToNextStep={goToNextStep}
 											goToPreviousStep={goToPreviousStep}
+											handleClose={handleClose}
 										/>
 									</S.StepperContent>
 								)}

@@ -48,8 +48,10 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 										""
 									);
 									inputProps.field.onChange(onlyNumbersWithoutTrace);
-								} else {
+								} else if (isMoney) {
 									inputProps.field.onChange(maskMoney(e.target.value));
+								} else {
+									inputProps.field.onChange(e.target.value);
 								}
 							}}
 							min={type === "number" ? 0 : undefined}

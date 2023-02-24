@@ -71,6 +71,7 @@ export default function CreateProductModal({
 					currentStep={currentStep}
 					goToNextStep={goToNextStep}
 					goToPreviousStep={goToPrevStep}
+					handleClose={handleClose}
 				/>
 			</ModalLayout>
 		</FormProvider>

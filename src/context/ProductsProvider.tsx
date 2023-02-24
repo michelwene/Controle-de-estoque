@@ -1,18 +1,13 @@
-import {
-	createContext,
-	useCallback,
-	useContext,
-	useMemo,
-	useState,
-} from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 type Product = {
 	id: string;
 	name: string;
-	description: string;
-	price: number;
-	stock: number;
-	category: string;
+	description?: string;
+	price?: number;
+	stock?: number;
+	category?: string;
+	created_at: Date;
 };
 
 export type ProductsProviderType = {

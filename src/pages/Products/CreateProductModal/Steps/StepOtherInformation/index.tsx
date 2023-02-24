@@ -10,14 +10,19 @@ import { FormData } from "../..";
 import { unMaskMoney } from "utils/maskOutputs";
 import { useState } from "react";
 import LoadingButton from "components/LoadingButton";
+import { useProductsContext } from "context/ProductsProvider";
+import { v4 as uuid } from "uuid";
 
 interface StepOtherInformationProps {
 	goToPreviousStep: () => void;
+	handleClose: () => void;
 }
 
 export default function StepOtherInformation({
 	goToPreviousStep,
+	handleClose,
 }: StepOtherInformationProps) {
+	const { addProduct } = useProductsContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const { handleSubmit } = useFormContext();
 	const categories = useSelector(selectCategories);
@@ -26,7 +31,8 @@ export default function StepOtherInformation({
 	function onSubmit(data: FormData) {
 		setIsLoading(true);
 		const dataFormatted = {
-			name: data.name,
+			id: uuid(),
+			name: data.name!,
 			description: data.description,
 			price: data.price ? unMaskMoney(data.price) : 0,
 			stock: data.stock ? Number(data.stock) : 0,
@@ -35,8 +41,9 @@ export default function StepOtherInformation({
 		};
 
 		setTimeout(() => {
-			console.log(dataFormatted);
+			addProduct(dataFormatted);
 			setIsLoading(false);
+			handleClose();
 		}, 3000);
 	}
 
