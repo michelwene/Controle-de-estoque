@@ -15,6 +15,7 @@ import { useState } from "react";
 import { unMaskMoney } from "utils/maskOutputs";
 import useToggle from "hooks/useToggle";
 import ModalCreateCategory from "components/ModalCreateCategory";
+import ModalConfirmationDelection from "components/ModalConfirmationDelection";
 
 export const schema = Yup.object().shape({
 	name: Yup.string().required("Nome é obrigatório"),
@@ -37,6 +38,8 @@ export default function EditProduct() {
 	const { products, updateProduct, removeProduct } = useProductsContext();
 	const categories = useSelector(selectCategories);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+	const [isOpenModalDelection, setIsOpenModalDelection] = useState(false);
 	const [value, toggle] = useToggle();
 
 	const product = products.find((product) => product.id === id);
@@ -79,12 +82,24 @@ export default function EditProduct() {
 		}, 3000);
 	};
 
-	const handleDelete = () => {
-		removeProduct(product.id);
-		navigate(-1);
+	const handleOpenModalDelection = () => {
+		setIsOpenModalDelection(true);
 	};
 
-	console.log("product to edit:", product);
+	const handleCloseModalDelection = () => {
+		setIsOpenModalDelection(false);
+	};
+
+	const handleDelete = () => {
+		setIsLoadingDelete(true);
+		setTimeout(() => {
+			handleCloseModalDelection();
+			removeProduct(product.id);
+			setIsLoadingDelete(false);
+			navigate(-1);
+		}, 3000);
+	};
+
 	return (
 		<FormProvider {...methods}>
 			<S.Container>
@@ -95,7 +110,7 @@ export default function EditProduct() {
 						</IconButton>
 						<S.Title>Editar produto: {product.name}</S.Title>
 					</S.WrapperHeader>
-					<IconButton onClick={handleDelete}>
+					<IconButton onClick={handleOpenModalDelection}>
 						<S.IconDelete />
 					</IconButton>
 				</S.ContentHeader>
@@ -118,6 +133,13 @@ export default function EditProduct() {
 				isLoading={isLoading}
 			/>
 			{value && <ModalCreateCategory isShow={value} handleClose={toggle} />}
+			<ModalConfirmationDelection
+				text="Deseja Realmente excluir este produto?"
+				onConfirm={handleDelete}
+				onCancel={handleCloseModalDelection}
+				isOpen={isOpenModalDelection}
+				isLoading={isLoadingDelete}
+			/>
 		</FormProvider>
 	);
 }
