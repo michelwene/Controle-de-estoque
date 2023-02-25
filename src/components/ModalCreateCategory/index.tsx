@@ -1,4 +1,4 @@
-import Input from "components/Input";
+import Input from "components/InputForm";
 import ModalLayout from "components/ModalLayout";
 import { FormProvider, useForm } from "react-hook-form";
 import * as S from "./styles";

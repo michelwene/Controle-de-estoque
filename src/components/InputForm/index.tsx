@@ -1,55 +1,44 @@
-import {
-	forwardRef,
-	ForwardRefRenderFunction,
-	HTMLInputTypeAttribute,
-} from "react";
-import { maskMoney } from "utils/maskOutputs";
-import * as S from "./styles";
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { forwardRef, ForwardRefRenderFunction } from "react";
 
-interface InputFormProps {
-	value: string;
-	onChange: (value: string) => void;
-	name: string;
-	type?: HTMLInputTypeAttribute;
-	error?: boolean;
-	label?: string;
-	id: string;
-	isMoney?: boolean;
-}
+import { Controller, useFormContext } from "react-hook-form";
+import FormHelperError from "components/FormHelperError";
+import { InputFormProps } from "./types";
+import Input from "components/Input";
 
 const InputForm: ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
-	{ value, onChange, name, type, id, error, label, isMoney, ...rest },
+	{ name, id, label, isRequired, isMoney, type = "text", ...rest },
 	ref
 ) => {
+	const { control } = useFormContext();
+
 	return (
-		<S.Container>
-			<S.Input
-				ref={ref}
-				name={name}
-				{...rest}
-				type={type}
-				id={id}
-				onChange={(e) => {
-					if (type === "number") {
-						const onlyNumbersWithoutTrace = e.target.value.replace(
-							/[^0-9]/g,
-							""
-						);
-						onChange(onlyNumbersWithoutTrace);
-					} else if (isMoney) {
-						onChange(maskMoney(e.target.value));
-					} else {
-						onChange(e.target.value);
-					}
-				}}
-				min={type === "number" ? 0 : undefined}
-				value={isMoney ? maskMoney(value ?? "") : value}
-				isError={error}
-			/>
-			<S.Label htmlFor={id} isActive={!!value || (isMoney && true)}>
-				{label}
-			</S.Label>
-		</S.Container>
+		<Controller
+			control={control}
+			name={name}
+			defaultValue=""
+			rules={{
+				required: isRequired ? "Campo obrigatório" : false,
+			}}
+			render={(inputProps) => (
+				<>
+					<Input
+						ref={ref}
+						id={id}
+						name={name}
+						onChange={(value) => inputProps.field.onChange(value)}
+						value={inputProps.field.value}
+						error={inputProps.fieldState.error && true}
+						isMoney={isMoney}
+						label={label}
+						type={type}
+					/>
+					{inputProps.fieldState.error && (
+						<FormHelperError text={inputProps.fieldState.error.message + ""} />
+					)}
+				</>
+			)}
+		/>
 	);
 };
 

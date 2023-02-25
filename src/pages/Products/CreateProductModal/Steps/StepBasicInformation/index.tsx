@@ -1,4 +1,4 @@
-import Input from "components/Input";
+import Input from "components/InputForm";
 import * as S from "./styles";
 import { useFormContext } from "react-hook-form";
 import { StepBasicInformationProps } from "./types";

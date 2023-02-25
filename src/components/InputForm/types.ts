@@ -1,6 +1,6 @@
 import { HTMLInputTypeAttribute } from "react";
 
-export interface InputProps {
+export interface InputFormProps {
 	name: string;
 	id: string;
 	label: string;

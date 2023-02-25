@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useProductsContext } from "context/ProductsProvider";
 import IconButton from "components/IconButton";
 import { useNavigate } from "react-router-dom";
-import Input from "components/Input";
+import Input from "components/InputForm";
 import { useForm, FormProvider } from "react-hook-form";
 import Select from "components/Select";
 import { useSelector } from "react-redux";
