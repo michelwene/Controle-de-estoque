@@ -8,6 +8,13 @@ export const Container = styled.header`
 	border: none;
 
 	box-shadow: 0px 00px 20px rgba(0, 0, 0, 0.4);
+
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	z-index: 999;
 `;
 
 export const Content = styled.div`
@@ -22,4 +29,8 @@ export const WrapperMenu = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	column-gap: 1rem;
+`;
+
+export const ToolBar = styled.div`
+	height: 70px;
 `;

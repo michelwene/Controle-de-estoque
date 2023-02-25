@@ -7,15 +7,18 @@ import * as S from "./styles";
 export default class Header extends React.Component {
 	render() {
 		return (
-			<S.Container>
-				<S.Content>
-					<S.WrapperMenu>
-						<Sidebar />
-						<Title title="Controle de estoque" />
-					</S.WrapperMenu>
-					<Counter />
-				</S.Content>
-			</S.Container>
+			<>
+				<S.Container>
+					<S.Content>
+						<S.WrapperMenu>
+							<Sidebar />
+							<Title title="Controle de estoque" />
+						</S.WrapperMenu>
+						<Counter />
+					</S.Content>
+				</S.Container>
+				<S.ToolBar />
+			</>
 		);
 	}
 }

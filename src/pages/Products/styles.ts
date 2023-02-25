@@ -17,7 +17,7 @@ export const PageTitle = styled.h1`
 `;
 
 export const ProductsList = styled.ul`
-	margin-top: 1.5rem;
+	padding: 1.5rem 0;
 
 	display: flex;
 	flex-direction: column;

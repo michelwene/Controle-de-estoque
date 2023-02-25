@@ -16,6 +16,7 @@ import { unMaskMoney } from "utils/maskOutputs";
 import useToggle from "hooks/useToggle";
 import ModalCreateCategory from "components/ModalCreateCategory";
 import ModalConfirmationDelection from "components/ModalConfirmationDelection";
+import { format } from "date-fns";
 
 export const schema = Yup.object().shape({
 	name: Yup.string().required("Nome é obrigatório"),
@@ -68,13 +69,14 @@ export default function EditProduct() {
 	const onSubmit = (data: FormData) => {
 		setIsLoading(true);
 		const dataFormatted = {
+			...product,
 			id: product.id,
 			name: data.name as string,
 			description: data.description as string,
 			category: data.category as string,
 			stock: data.stock ? Number(data.stock) : (0 as number),
 			price: data.price ? unMaskMoney(data.price as string) : (0 as number),
-			update_at: new Date() as Date,
+			updated_at: new Date(),
 		};
 		setTimeout(() => {
 			updateProduct(dataFormatted);
@@ -96,7 +98,8 @@ export default function EditProduct() {
 			handleCloseModalDelection();
 			removeProduct(product.id);
 			setIsLoadingDelete(false);
-			navigate(-1);
+
+			navigate("/produtos");
 		}, 3000);
 	};
 
@@ -114,6 +117,20 @@ export default function EditProduct() {
 						<S.IconDelete />
 					</IconButton>
 				</S.ContentHeader>
+				<S.WrapperInfo>
+					<S.Info>
+						Criado em:{" "}
+						{product.created_at
+							? format(new Date(product.created_at!), "dd/MM/yyyy HH:mm:ss")
+							: " - "}
+					</S.Info>
+					{product.updated_at && (
+						<S.Info>
+							Atualizado em:{" "}
+							{format(new Date(product.updated_at), "dd/MM/yyyy HH:mm:ss")}
+						</S.Info>
+					)}
+				</S.WrapperInfo>
 				<S.Content>
 					<Input name="name" label="Nome" id="name" isRequired />
 					<Input name="description" label="Descrição" id="description" />

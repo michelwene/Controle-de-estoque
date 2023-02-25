@@ -17,7 +17,11 @@ export default function ModalConfirmationDelection({
 	isLoading,
 }: ModalConfirmationDelectionProps) {
 	return (
-		<ModalLayout title="" isShow={isOpen} handleClose={onCancel}>
+		<ModalLayout
+			title=""
+			isShow={isOpen}
+			handleClose={isLoading ? undefined : onCancel}
+		>
 			<S.Text>{text}</S.Text>
 			<S.WrapperButtons>
 				<S.ButtonCancel onClick={onCancel} isLoading={isLoading}>

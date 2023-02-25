@@ -1,6 +1,6 @@
 export interface ModalLayoutProps {
 	isShow: boolean;
-	handleClose: () => void;
+	handleClose?: () => void;
 	children: React.ReactNode;
 	title: string;
 }

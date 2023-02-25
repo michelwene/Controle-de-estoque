@@ -85,3 +85,16 @@ export const ButtonCreateCategory = styled.button`
 		filter: brightness(0.8);
 	}
 `;
+
+export const WrapperInfo = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+export const Info = styled.span`
+	font-size: ${({ theme }) => theme.fontSizes.xs};
+	font-weight: 500;
+	font-family: ${({ theme }) => theme.fonts.primary};
+
+	margin-top: 1rem;
+`;
