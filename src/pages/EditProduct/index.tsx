@@ -13,6 +13,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import ButtonFab from "components/ButtonFab";
 import { useState } from "react";
 import { unMaskMoney } from "utils/maskOutputs";
+import useToggle from "hooks/useToggle";
+import ModalCreateCategory from "components/ModalCreateCategory";
 
 export const schema = Yup.object().shape({
 	name: Yup.string().required("Nome é obrigatório"),
@@ -32,9 +34,10 @@ export type FormData = {
 
 export default function EditProduct() {
 	const { id } = useParams<{ id: string }>();
-	const { products, updateProduct } = useProductsContext();
+	const { products, updateProduct, removeProduct } = useProductsContext();
 	const categories = useSelector(selectCategories);
 	const [isLoading, setIsLoading] = useState(false);
+	const [value, toggle] = useToggle();
 
 	const product = products.find((product) => product.id === id);
 	if (!product) {
@@ -76,22 +79,37 @@ export default function EditProduct() {
 		}, 3000);
 	};
 
+	const handleDelete = () => {
+		removeProduct(product.id);
+		navigate(-1);
+	};
+
 	console.log("product to edit:", product);
 	return (
 		<FormProvider {...methods}>
 			<S.Container>
-				<S.WrapperHeader>
-					<IconButton onClick={() => navigate(-1)}>
-						<S.IconBack />
+				<S.ContentHeader>
+					<S.WrapperHeader>
+						<IconButton onClick={() => navigate(-1)}>
+							<S.IconBack />
+						</IconButton>
+						<S.Title>Editar produto: {product.name}</S.Title>
+					</S.WrapperHeader>
+					<IconButton onClick={handleDelete}>
+						<S.IconDelete />
 					</IconButton>
-					<S.Title>Editar produto: {product.name}</S.Title>
-				</S.WrapperHeader>
+				</S.ContentHeader>
 				<S.Content>
 					<Input name="name" label="Nome" id="name" isRequired />
 					<Input name="description" label="Descrição" id="description" />
 					<Input name="price" label="Preço" id="price" isMoney />
 					<Input name="stock" label="Estoque" id="stock" type="number" />
-					<Select name="category" label="Categorias" options={categories} />
+					<S.CategoryWrapper>
+						<Select name="category" label="Categorias" options={categories} />
+						<S.ButtonCreateCategory onClick={toggle}>
+							<S.Icon />
+						</S.ButtonCreateCategory>
+					</S.CategoryWrapper>
 				</S.Content>
 			</S.Container>
 			<ButtonFab
@@ -99,6 +117,7 @@ export default function EditProduct() {
 				icon={<S.IconSave />}
 				isLoading={isLoading}
 			/>
+			{value && <ModalCreateCategory isShow={value} handleClose={toggle} />}
 		</FormProvider>
 	);
 }
