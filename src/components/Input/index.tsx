@@ -6,6 +6,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { maskMoney } from "utils/maskOutputs";
 import FormHelperError from "components/FormHelperError";
 import { InputProps } from "./types";
+import InputForm from "components/InputForm";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 	{ name, id, label, isRequired, isMoney, type = "text", ...rest },
@@ -23,41 +24,16 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 			}}
 			render={(inputProps) => (
 				<>
-					<S.Container>
-						<S.Input
-							ref={ref}
-							name={name}
-							{...rest}
-							type={type}
-							id={id}
-							onChange={(e) => {
-								if (type === "number") {
-									const onlyNumbersWithoutTrace = e.target.value.replace(
-										/[^0-9]/g,
-										""
-									);
-									inputProps.field.onChange(onlyNumbersWithoutTrace);
-								} else if (isMoney) {
-									inputProps.field.onChange(maskMoney(e.target.value));
-								} else {
-									inputProps.field.onChange(e.target.value);
-								}
-							}}
-							min={type === "number" ? 0 : undefined}
-							value={
-								isMoney
-									? maskMoney(inputProps.field.value ?? "")
-									: inputProps.field.value
-							}
-							isError={inputProps.fieldState.error && true}
-						/>
-						<S.Label
-							htmlFor={id}
-							isActive={!!inputProps.field.value || (isMoney && true)}
-						>
-							{label}
-						</S.Label>
-					</S.Container>
+					<InputForm
+						id={id}
+						name={name}
+						onChange={inputProps.field.onChange}
+						value={inputProps.field.value}
+						error={inputProps.fieldState.error && true}
+						isMoney={isMoney}
+						label={label}
+						type={type}
+					/>
 					{inputProps.fieldState.error && (
 						<FormHelperError text={inputProps.fieldState.error.message + ""} />
 					)}

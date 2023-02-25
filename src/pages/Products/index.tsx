@@ -30,9 +30,6 @@ export default function Products() {
 	};
 
 	const productsPerPage = products.slice((page - 1) * 10, page * 10);
-	console.log("page:", page);
-
-	console.log("productsPerPage:", productsPerPage);
 
 	return (
 		<>
