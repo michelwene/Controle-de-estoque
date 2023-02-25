@@ -3,12 +3,12 @@ import * as S from "./styles";
 import { ButtonFabProps } from "./types";
 
 const ButtonFab: ForwardRefRenderFunction<HTMLButtonElement, ButtonFabProps> = (
-	{ onClick, ...rest },
+	{ onClick, icon, isLoading, ...rest },
 	ref
 ) => {
 	return (
-		<S.Container ref={ref} onClick={onClick} {...rest}>
-			<S.Icon />
+		<S.Container ref={ref} onClick={onClick} {...rest} isLoading={isLoading}>
+			{isLoading ? <S.LoadingIcon /> : <>{icon ?? <S.Icon />}</>}
 		</S.Container>
 	);
 };

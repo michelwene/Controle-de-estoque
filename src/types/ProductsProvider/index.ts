@@ -5,7 +5,8 @@ export type Product = {
 	price?: number;
 	stock?: number;
 	category?: string;
-	created_at: Date;
+	created_at?: Date;
+	updated_at?: Date;
 };
 
 export type ProductsProviderType = {
