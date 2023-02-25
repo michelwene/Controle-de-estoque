@@ -10,6 +10,7 @@ import { Pagination } from "components/Pagination";
 import { useState } from "react";
 
 export default function Products() {
+	const [search, setSearch] = useState("");
 	const [page, setPage] = useState(1);
 	const [value, toggle] = useToggle(false);
 	const { products } = useProductsContext();
