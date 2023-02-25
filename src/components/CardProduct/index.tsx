@@ -2,12 +2,15 @@ import Paper from "components/Paper";
 import { Product } from "types/ProductsProvider";
 import { maskMoney } from "utils/maskOutputs";
 import * as S from "./styles";
+import { useNavigate } from "react-router-dom";
+import IconButton from "components/IconButton";
 
 interface ICardProductProps {
 	product: Product;
 }
 
 export default function CardProduct({ product }: ICardProductProps) {
+	const navigate = useNavigate();
 	return (
 		<Paper>
 			<S.ProductItem>
@@ -18,6 +21,9 @@ export default function CardProduct({ product }: ICardProductProps) {
 				</S.ProductInfo>
 				<S.WrapperPrice>
 					<S.ProductPrice>{maskMoney(product.price)}</S.ProductPrice>
+					<IconButton onClick={() => navigate(`/produto/${product.id}`)}>
+						<S.IconEdit />
+					</IconButton>
 				</S.WrapperPrice>
 			</S.ProductItem>
 		</Paper>

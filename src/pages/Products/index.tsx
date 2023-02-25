@@ -9,7 +9,7 @@ import CardProduct from "components/CardProduct";
 export default function Products() {
 	const [value, toggle] = useToggle(false);
 	const { products } = useProductsContext();
-	console.log("products:", products);
+	// console.log("products:", products);
 	return (
 		<>
 			<S.Container>

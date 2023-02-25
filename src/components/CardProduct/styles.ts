@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MdModeEditOutline } from "react-icons/md";
 
 export const ProductItem = styled.li`
 	display: flex;
@@ -30,11 +31,19 @@ export const ProductCategory = styled.span`
 	font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
-export const WrapperPrice = styled.div``;
+export const WrapperPrice = styled.div`
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+`;
 
 export const ProductPrice = styled.span`
 	font-size: ${({ theme }) => theme.fontSizes.md};
 	font-weight: 500;
 	color: ${({ theme }) => theme.colors.black};
 	font-family: ${({ theme }) => theme.fonts.primary};
+`;
+
+export const IconEdit = styled(MdModeEditOutline)`
+	font-size: ${({ theme }) => theme.fontSizes.xl};
 `;
