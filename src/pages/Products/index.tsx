@@ -3,8 +3,8 @@ import CreateProductModal from "pages/Products/CreateProductModal";
 import useToggle from "hooks/useToggle";
 import { useProductsContext } from "context/ProductsProvider";
 import * as S from "./styles";
-import Paper from "components/Paper";
-import { maskMoney } from "utils/maskOutputs";
+
+import CardProduct from "components/CardProduct";
 
 export default function Products() {
 	const [value, toggle] = useToggle(false);
@@ -17,20 +17,7 @@ export default function Products() {
 
 				<S.ProductsList>
 					{products.map((product) => (
-						<Paper key={product.id}>
-							<S.ProductItem>
-								<S.ProductInfo>
-									<S.ProductName>{product.name}</S.ProductName>
-									<S.ProductDescription>
-										{product.description}
-									</S.ProductDescription>
-									<S.ProductCategory>{product.category}</S.ProductCategory>
-								</S.ProductInfo>
-								<S.WrapperPrice>
-									<S.ProductPrice>{maskMoney(product.price)}</S.ProductPrice>
-								</S.WrapperPrice>
-							</S.ProductItem>
-						</Paper>
+						<CardProduct product={product} key={product.id} />
 					))}
 				</S.ProductsList>
 			</S.Container>
