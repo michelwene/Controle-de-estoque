@@ -52,7 +52,6 @@ export default function EditProduct() {
 			category: product.category,
 		},
 	});
-	console.log(product);
 	const { handleSubmit } = methods;
 
 	const onSubmit = (data: FormData) => {

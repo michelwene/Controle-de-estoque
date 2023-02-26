@@ -38,7 +38,7 @@ export default function ModalCreateCategory({
 
 		setTimeout(() => {
 			dispatch(addCategories(formData));
-			console.log(data);
+
 			setIsLoading(false);
 			handleClose();
 		}, 3000);
