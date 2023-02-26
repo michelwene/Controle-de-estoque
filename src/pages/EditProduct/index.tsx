@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "components/InputForm";
 import { useForm, FormProvider } from "react-hook-form";
 import Select from "components/Select";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "redux/categoriesSlice";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,6 +17,8 @@ import useToggle from "hooks/useToggle";
 import ModalCreateCategory from "components/ModalCreateCategory";
 import ModalConfirmationDelection from "components/ModalConfirmationDelection";
 import { format } from "date-fns";
+import { addReport } from "redux/reportsSlice";
+import { v4 as uuid } from "uuid";
 
 export const schema = Yup.object().shape({
 	name: Yup.string().required("Nome é obrigatório"),
@@ -42,6 +44,7 @@ export default function EditProduct() {
 	const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 	const [isOpenModalDelection, setIsOpenModalDelection] = useState(false);
 	const [value, toggle] = useToggle();
+	const dispatch = useDispatch();
 
 	const product = products.find((product) => product.id === id);
 	if (!product) {
@@ -82,6 +85,17 @@ export default function EditProduct() {
 			updateProduct(dataFormatted);
 			setIsLoading(false);
 		}, 3000);
+
+		dispatch(
+			addReport({
+				id: uuid(),
+				type: "update",
+				data: {
+					name: product.name,
+					created_at: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
+				},
+			})
+		);
 	};
 
 	const handleOpenModalDelection = () => {
@@ -101,6 +115,17 @@ export default function EditProduct() {
 
 			navigate("/produtos");
 		}, 3000);
+
+		dispatch(
+			addReport({
+				id: uuid(),
+				type: "delete",
+				data: {
+					name: product.name,
+					created_at: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
+				},
+			})
+		);
 	};
 
 	return (

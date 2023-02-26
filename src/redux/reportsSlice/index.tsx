@@ -15,18 +15,18 @@ function createReportMessage(report: Report) {
 		case "create_product":
 			return `Você cadastrou um produto com o nome "${data.name}", preço: R$ ${data.price}, categoria: ${data.category}, data: ${data.created_at}.`;
 		case "create_category":
-			return `Você cadastrou uma categoria com o nome "${data.name}" ás ${data.created_at}.`;
+			return `Você cadastrou uma categoria com o nome "${data.name}", data: ${data.created_at}.`;
 		case "delete":
-			return `Você deletou o produto "${data.name}" ás ${data.created_at}.`;
+			return `Você deletou o produto "${data.name}", data: ${data.created_at}.`;
 		case "update":
-			return `Você atualizou o produto "${data.name}" ás ${data.created_at}.`;
+			return `Você atualizou o produto "${data.name}", data: ${data.created_at}.`;
 	}
 }
 
 function saveToLocalStorage(state: Report) {
 	const getReports = localStorage.getItem("reports");
 	const reports = getReports ? JSON.parse(getReports) : [];
-	reports.push(state);
+	reports.unshift(state);
 	localStorage.setItem("reports", JSON.stringify(reports));
 }
 
@@ -40,7 +40,7 @@ export const reportsSlice = createSlice({
 	reducers: {
 		addReport: (state, { payload }: { payload: Report }) => {
 			saveToLocalStorage(payload);
-			state.push(payload);
+			state.unshift(payload);
 		},
 	},
 });

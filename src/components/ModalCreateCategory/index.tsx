@@ -8,6 +8,8 @@ import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import LoadingButton from "components/LoadingButton";
 import { ModalCreateCategoryProps } from "./types";
+import { addReport } from "redux/reportsSlice";
+import { format } from "date-fns";
 
 export default function ModalCreateCategory({
 	isShow,
@@ -36,9 +38,21 @@ export default function ModalCreateCategory({
 
 		setTimeout(() => {
 			dispatch(addCategories(formData));
+			console.log(data);
 			setIsLoading(false);
 			handleClose();
 		}, 3000);
+
+		dispatch(
+			addReport({
+				id: uuid(),
+				type: "create_category",
+				data: {
+					name: data.category,
+					created_at: format(new Date(), "dd/MM/yyyy HH:mm"),
+				},
+			})
+		);
 	};
 
 	return (

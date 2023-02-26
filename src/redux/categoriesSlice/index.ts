@@ -59,6 +59,7 @@ export const categoriesSlice = createSlice({
 			const isExistCategory = state.categories.find((category) => {
 				return category.name === payload.name;
 			});
+
 			if (isExistCategory) {
 				return state;
 			}
