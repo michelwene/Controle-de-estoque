@@ -1,13 +1,9 @@
 import Paper from "components/Paper";
-import { Product } from "types/ProductsProvider";
 import { maskMoney } from "utils/maskOutputs";
 import * as S from "./styles";
 import { useNavigate } from "react-router-dom";
 import IconButton from "components/IconButton";
-
-interface ICardProductProps {
-	product: Product;
-}
+import { ICardProductProps } from "./types";
 
 export default function CardProduct({ product }: ICardProductProps) {
 	const navigate = useNavigate();

@@ -1,13 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "redux/store";
-
-type Report = {
-	id: string;
-	type: "delete" | "update" | "create_product" | "create_category";
-	data: {
-		[key: string]: string | number;
-	};
-};
+import { Report } from "./types";
 
 function createReportMessage(report: Report) {
 	const { type, data } = report;

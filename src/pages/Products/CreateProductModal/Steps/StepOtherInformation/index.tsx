@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "redux/categoriesSlice";
 import * as S from "./styles";
 import { useFormContext } from "react-hook-form";
-import { FormData } from "../..";
 import { maskMoney, unMaskMoney } from "utils/maskOutputs";
 import { useState } from "react";
 import LoadingButton from "components/LoadingButton";
@@ -15,6 +14,7 @@ import { v4 as uuid } from "uuid";
 import { StepOtherInformationProps } from "./types";
 import { addReport } from "redux/reportsSlice";
 import { format } from "date-fns";
+import { FormData } from "../../types";
 
 export default function StepOtherInformation({
 	goToPreviousStep,

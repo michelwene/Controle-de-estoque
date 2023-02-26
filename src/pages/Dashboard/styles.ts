@@ -16,6 +16,24 @@ export const PageTitle = styled.h1`
 	font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
+export const WrapperTotalPrice = styled.div`
+	margin: 1rem 0;
+`;
+
+export const TitleWrapperTotalPrice = styled.h2`
+	font-size: ${({ theme }) => theme.fontSizes.md};
+	font-weight: 500;
+	color: ${({ theme }) => theme.colors.black};
+	font-family: ${({ theme }) => theme.fonts.primary};
+`;
+
+export const TotalPrice = styled.h2`
+	font-size: ${({ theme }) => theme.fontSizes.md};
+	font-weight: 600;
+	color: ${({ theme }) => theme.colors.black};
+	font-family: ${({ theme }) => theme.fonts.primary};
+`;
+
 export const Card = styled.div`
 	background: ${({ theme }) => theme.background.shape};
 	border-radius: 0.5rem;

@@ -1,13 +1,6 @@
 import ModalLayout from "components/ModalLayout";
 import * as S from "./styles";
-
-interface ModalConfirmationDelectionProps {
-	text: string;
-	onConfirm: () => void;
-	onCancel: () => void;
-	isOpen: boolean;
-	isLoading?: boolean;
-}
+import { ModalConfirmationDelectionProps } from "./types";
 
 export default function ModalConfirmationDelection({
 	onCancel,

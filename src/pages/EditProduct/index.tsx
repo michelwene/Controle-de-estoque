@@ -19,22 +19,8 @@ import ModalConfirmationDelection from "components/ModalConfirmationDelection";
 import { format } from "date-fns";
 import { addReport } from "redux/reportsSlice";
 import { v4 as uuid } from "uuid";
-
-export const schema = Yup.object().shape({
-	name: Yup.string().required("Nome é obrigatório"),
-	description: Yup.string(),
-	price: Yup.string(),
-	stock: Yup.string(),
-	category: Yup.string(),
-});
-
-export type FormData = {
-	name?: string;
-	description?: string;
-	price?: string | number;
-	stock?: string | number;
-	category?: string;
-};
+import { FormData } from "./types";
+import { schema } from "./consts";
 
 export default function EditProduct() {
 	const { id } = useParams<{ id: string }>();

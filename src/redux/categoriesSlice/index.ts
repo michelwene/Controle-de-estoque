@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "redux/store";
-
-type Category = {
-	id: string;
-	name: string;
-};
+import { Category } from "./types";
 
 function addCategoriesToLocalStorage(categories: Category) {
 	const categoriesFromLocalStorage = localStorage.getItem("categories");

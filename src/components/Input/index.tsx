@@ -1,21 +1,7 @@
-import {
-	forwardRef,
-	ForwardRefRenderFunction,
-	HTMLInputTypeAttribute,
-} from "react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 import { maskMoney } from "utils/maskOutputs";
 import * as S from "./styles";
-
-interface InputProps {
-	value: string;
-	onChange: (value: string) => void;
-	name: string;
-	type?: HTMLInputTypeAttribute;
-	error?: boolean;
-	label?: string;
-	id: string;
-	isMoney?: boolean;
-}
+import { InputProps } from "./types";
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 	{ value, onChange, name, type, id, error, label, isMoney, ...rest },

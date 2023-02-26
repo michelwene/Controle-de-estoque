@@ -1,16 +1,28 @@
 import EmptyMessage from "components/EmptyMessage";
+import ReportItem from "components/ReportItem";
+import { useProductsContext } from "context/ProductsProvider";
 import { useSelector } from "react-redux";
 import { selectReports } from "redux/reportsSlice";
+import { maskMoney } from "utils/maskOutputs";
 import * as S from "./styles";
 
 export default function Dashboard() {
 	const reports = useSelector(selectReports);
-	// console.log("reports: ", reports);
+	const { products } = useProductsContext();
+
+	const totalPrice = products.reduce((acc, product) => {
+		return acc + product.price! * product.stock!;
+	}, 0);
 
 	return (
 		<>
 			<S.Container>
-				<S.PageTitle>Dashboard</S.PageTitle>
+				<S.WrapperTotalPrice>
+					<S.TitleWrapperTotalPrice>
+						Preço total dos produtos cadastrados:
+					</S.TitleWrapperTotalPrice>
+					<S.TotalPrice>{maskMoney(totalPrice)}</S.TotalPrice>
+				</S.WrapperTotalPrice>
 				<S.Card>
 					<S.CardHeader>
 						<S.CardTitle>Lista de atividades</S.CardTitle>
@@ -21,9 +33,7 @@ export default function Dashboard() {
 						) : (
 							<>
 								{reports.map((report, index) => (
-									<S.CardWrapper key={report + index}>
-										<S.CardText>{report}</S.CardText>
-									</S.CardWrapper>
+									<ReportItem key={report + index} report={report} />
 								))}
 							</>
 						)}
