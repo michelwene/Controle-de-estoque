@@ -7,6 +7,7 @@ export const Container = styled.div`
 	height: 100%;
 
 	margin-top: 2rem;
+	padding: 0 1rem;
 `;
 
 export const PageTitle = styled.h1`
@@ -37,16 +38,17 @@ export const TotalPrice = styled.h2`
 export const Card = styled.div`
 	background: ${({ theme }) => theme.background.shape};
 	border-radius: 0.5rem;
-	padding: 1.5rem 2rem;
 
 	margin-top: 1.5rem;
 
+	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: flex-start;
 
 	box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+	max-height: 500px;
+	overflow-y: auto;
 `;
 
 export const CardHeader = styled.div`
@@ -60,6 +62,7 @@ export const CardTitle = styled.h2`
 	font-family: ${({ theme }) => theme.fonts.primary};
 
 	text-align: center;
+	padding-top: 1rem;
 `;
 
 export const CardBody = styled.ul`
@@ -71,24 +74,5 @@ export const CardBody = styled.ul`
 	gap: 0.5rem;
 	margin-top: 1rem;
 
-	max-height: 500px;
-	overflow-y: auto;
 	width: 100%;
-`;
-
-export const CardWrapper = styled.li`
-	border-bottom: 1px solid #d7d8da;
-
-	padding-bottom: 0.5rem;
-
-	&:last-child {
-		border-bottom: none;
-	}
-`;
-
-export const CardText = styled.p`
-	font-size: ${({ theme }) => theme.fontSizes.sm};
-	font-weight: 400;
-	color: ${({ theme }) => theme.colors.black};
-	font-family: ${({ theme }) => theme.fonts.primary};
 `;

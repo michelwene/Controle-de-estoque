@@ -14,6 +14,7 @@ export const Container = styled.header`
 	left: 0;
 
 	width: 100%;
+	z-index: 99;
 `;
 
 export const Content = styled.div`

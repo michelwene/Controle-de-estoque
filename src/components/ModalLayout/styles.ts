@@ -6,7 +6,7 @@ interface ModalProps {
 }
 
 export const Backdrop = styled.div<ModalProps>`
-	z-index: auto;
+	z-index: 999;
 	display: ${({ isShow }) => (isShow ? "flex" : "none")};
 	position: fixed;
 	top: 0;
@@ -33,6 +33,14 @@ export const Container = styled.div`
 	padding: 0.75rem;
 
 	overflow-y: auto;
+
+	::-webkit-scrollbar {
+		width: 0.5rem;
+	}
+
+	@media (max-width: 768px) {
+		min-width: 80%;
+	}
 `;
 
 export const ModalHeader = styled.div`

@@ -5,6 +5,10 @@ export const Container = styled.div`
 	justify-content: space-between;
 	column-gap: 1rem;
 	align-items: center;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
 `;
 
 export const Description = styled.p`

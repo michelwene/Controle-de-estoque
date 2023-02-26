@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const CardWrapper = styled.li`
 	border-bottom: 1px solid #d7d8da;
 
-	padding-bottom: 0.5rem;
+	padding: 1.5rem 2rem;
+	width: 100%;
 
 	&:last-child {
 		border-bottom: none;

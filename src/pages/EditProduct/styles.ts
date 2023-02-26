@@ -9,6 +9,8 @@ export const Container = styled.div`
 	height: 100%;
 
 	margin-top: 2rem;
+
+	padding: 0 1rem;
 `;
 
 export const ContentHeader = styled.div`
