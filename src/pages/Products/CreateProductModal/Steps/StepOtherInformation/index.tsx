@@ -2,22 +2,25 @@ import Input from "components/InputForm";
 import ModalCreateCategory from "components/ModalCreateCategory";
 import Select from "components/Select";
 import useToggle from "hooks/useToggle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "redux/categoriesSlice";
 import * as S from "./styles";
 import { useFormContext } from "react-hook-form";
 import { FormData } from "../..";
-import { unMaskMoney } from "utils/maskOutputs";
+import { maskMoney, unMaskMoney } from "utils/maskOutputs";
 import { useState } from "react";
 import LoadingButton from "components/LoadingButton";
 import { useProductsContext } from "context/ProductsProvider";
 import { v4 as uuid } from "uuid";
 import { StepOtherInformationProps } from "./types";
+import { addReport } from "redux/reportsSlice";
+import { format } from "date-fns";
 
 export default function StepOtherInformation({
 	goToPreviousStep,
 	handleClose,
 }: StepOtherInformationProps) {
+	const dispatch = useDispatch();
 	const { addProduct } = useProductsContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const { handleSubmit } = useFormContext();
@@ -41,6 +44,19 @@ export default function StepOtherInformation({
 			setIsLoading(false);
 			handleClose();
 		}, 3000);
+
+		dispatch(
+			addReport({
+				id: uuid(),
+				type: "create_product",
+				data: {
+					name: dataFormatted.name,
+					created_at: format(dataFormatted.created_at, "dd/MM/yyyy HH:mm"),
+					price: maskMoney(dataFormatted.price),
+					category: dataFormatted.category || "N/C",
+				},
+			})
+		);
 	}
 
 	return (

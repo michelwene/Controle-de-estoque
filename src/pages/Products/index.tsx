@@ -80,12 +80,14 @@ export default function Products() {
 						<CardProduct product={product} key={product.id} />
 					))}
 				</S.ProductsList>
-				<Pagination
-					currentPage={page}
-					totalPages={totalPages}
-					nextPage={() => handleNextPage()}
-					prevPage={() => handlePrevPage()}
-				/>
+				{totalPages > 1 && (
+					<Pagination
+						currentPage={page}
+						totalPages={totalPages}
+						nextPage={() => handleNextPage()}
+						prevPage={() => handlePrevPage()}
+					/>
+				)}
 			</S.Container>
 			<ButtonFab onClick={toggle} />
 			{value && <CreateProductModal isShow={value} handleClose={toggle} />}

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const EmptyList = styled.div`
 	margin-top: 2rem;
+	width: 100%;
 `;
 
 export const EmptyListText = styled.p`
