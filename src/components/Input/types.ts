@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from "react";
 
 export interface InputProps {
-	value: string;
+	value: string | number;
 	onChange: (value: string) => void;
 	name: string;
 	type?: HTMLInputTypeAttribute;

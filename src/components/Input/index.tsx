@@ -32,7 +32,10 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 				value={isMoney ? maskMoney(value ?? "") : value}
 				isError={error}
 			/>
-			<S.Label htmlFor={id} isActive={!!value || (isMoney && true)}>
+			<S.Label
+				htmlFor={id}
+				isActive={value === 0 || !!value || (isMoney && true)}
+			>
 				{label}
 			</S.Label>
 		</S.Container>
