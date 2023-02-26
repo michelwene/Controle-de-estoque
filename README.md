@@ -12,10 +12,11 @@ Este é um projeto de controle de estoque de produtos desenvolvido para um teste
 
 1. Na pasta raiz do projeto, execute o comando `yarn start` para iniciar o servidor.
 2. Acesse `http://localhost:3000` em seu navegador para abrir o website.
-3. Na página inicial, você poderá visualizar a lista de produtos em estoque.
-4. Clique em "Adicionar Produto" para adicionar um novo produto ao estoque.
-5. Clique em "Editar" ao lado de um produto para editá-lo.
-6. Clique em "Remover" ao lado de um produto para removê-lo do estoque.
+3. Na página inicial, Clique no ícone de menu no lado esquerdo superior.
+4. Clique em "Produtos" para visualizar a lista de produtos.
+5. Clique no botão direito inferior para abrir o modal de criação de produto.
+6. Após criar o produto, clique no botão no lado direito inferior do card do produto.
+7. Clique no ícone superior direito do card do detalhe do produto para deletar o produto.
 
 ## Tecnologias Utilizadas
 
