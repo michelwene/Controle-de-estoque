@@ -5,7 +5,7 @@ Este é um projeto de controle de estoque de produtos desenvolvido para um teste
 ## Instalação
 
 1. Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em seu sistema operacional.
-2. Faça um clone deste repositório em sua máquina local usando `https://github.com/michelwene/Controle-de-estoque.git`.
+2. Faça um clone deste repositório em sua máquina local usando `git clone https://github.com/michelwene/Controle-de-estoque.git`.
 3. Na pasta raiz do projeto, execute o comando `yarn install` para instalar as dependências do projeto.
 
 ## Como Usar
